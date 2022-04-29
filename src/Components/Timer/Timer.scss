@@ -1,0 +1,53 @@
+@import "../../breakpoint.scss";
+.timer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 550px;
+    @include media("<=desktop") {
+        width: 350px;
+    }
+    .first-dots {
+        margin-right: 13px;
+        margin-left: 7px;
+    }
+    .dots {
+        width: 4px;
+        height: 14px;
+        margin-right: 13px;
+    }
+    .time-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        &:first-child {
+            margin-right: 15px;
+        }
+        .time-container {
+            margin-bottom: 10px;
+            .time-number {
+                div {
+                    span {
+                        margin-right: 6px;
+                    }
+                }
+                span {
+                    background-color: hsla(94, 100%, 44%, 0.2);
+                    border-radius: 10px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    margin-right: 10px;
+                    color: #60df00;
+                    padding: 9px 15px 9px 15px;
+                    @include media("<=desktop") {
+                        padding: 3px 5px 3px 5px;
+                    }
+                }
+            }
+            font {
+                font-weight: bold;
+            }
+        }
+    }
+}

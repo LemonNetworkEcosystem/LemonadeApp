@@ -1,0 +1,160 @@
+@import "../../breakpoint.scss";
+.add-modal {
+    width: 450px;
+    height: 500px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    border: 2px solid #60df00;
+    position: absolute;
+    left: 45%;
+    outline: none;
+    display: flex;
+    font-family: "Nunito", sans-serif;
+    flex-direction: column;
+    margin-left: -250px;
+    align-items: center;
+    top: 25%;
+    @include media ("<=desktop") {
+        left: 50%;
+        width: 350px;
+        margin-left: -195px;
+    }
+    .modal-head {
+        font-weight: bold;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 21px;
+        margin-top: -20px;
+        span {
+            cursor: pointer;
+        }
+    }
+    .modal-amount {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        margin-top: -20px;
+        .modal-amount-top {
+            display: flex;
+            align-items: center;
+            span {
+                font-size: 64px;
+                margin-right: 20px;
+                font-weight: 700;
+            }
+            img {
+                margin-top: 20px;
+                width: 32px;
+                margin-right: 10px;
+            }
+        }
+        span {
+            font-size: 32px;
+        }
+    }
+    .warning-text {
+        margin-top: 40px;
+        font-style: italic;
+        font-weight: 600;
+    }
+    .modal-stats {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 30px;
+        .title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .deposit-info {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            img {
+                margin-right: 10px;
+                width: 32px;
+            }
+        }
+        .rates {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            margin-top: 10px;
+            .rates-info {
+                align-items: flex-end;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        .share {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .exchange-btn {
+            display: flex;
+            margin-top: 20px;
+            align-items: center;
+            justify-content: center;
+            button:hover {
+                cursor: pointer;
+            }
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                outline: none;
+                position: relative;
+                padding: 15px 50px;
+                color: black;
+                background: #f5f5f5;
+                border: none;
+                border: 2px solid #60df00;
+                width: 300px;
+                height: 55px;
+                border-radius: 10px;
+                font-weight: bold;
+                overflow: hidden;
+            }
+            /*button:before (attr data-hover)*/
+            button:hover:before {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+            button:before {
+                content: url(../../assets/exchange-btn.svg);
+                position: absolute;
+                left: 0;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transform: translate(0, 100%);
+                transition: all 0.3s ease-in-out;
+            }
+            /*button div (button text before hover)*/
+            button:hover div {
+                opacity: 0;
+                transform: translate(0, -100%);
+            }
+            button div {
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                font-weight: 800;
+                font-size: 0.8em;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    }
+}

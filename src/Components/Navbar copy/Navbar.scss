@@ -1,0 +1,230 @@
+@import '../../breakpoint.scss';
+.navbar-full-container {
+  height: 100vh;
+  width: 100%;
+  background-color: #60df00;
+  position: absolute;
+  @include media('<=tablet') {
+    display: unset;
+  }
+  .navbar {
+    font-size: 18px;
+    width: 320px;
+    overflow: hidden;
+    margin-top: 25px;
+    z-index: 100;
+    min-width: 320px;
+    .little-nav {
+      display: none;
+    }
+    transition: all 0.5s;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 95vh;
+    border-radius: 30px;
+    &::before {
+      width: 100vw;
+      height: 100vh;
+      background-color: #60df00;
+    }
+    & .nav-logo {
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+    @include media('<=tablet') {
+      margin-left: 0px;
+      width: 300px;
+      min-width: 150px;
+      height: 100vh;
+      position: absolute;
+      left: 0;
+      margin: auto;
+    }
+    .hb-line {
+      margin-top: 40px;
+      width: 80%;
+      display: none;
+      align-items: flex-end;
+      flex-direction: column;
+      cursor: pointer;
+      @include media('<=tablet') {
+        display: flex;
+      }
+      div {
+        height: 3px;
+        width: 24px;
+        border-radius: 2px;
+        background: #60df00;
+        margin-top: 5px;
+        &:first-child {
+          margin-right: 8px;
+          width: 16px;
+        }
+        &:last-child {
+          margin-right: 14px;
+          width: 10px;
+        }
+      }
+    }
+    .hb-line2 {
+      margin-top: 40px;
+      width: 80%;
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+      cursor: pointer;
+      @include media('<=tablet') {
+        display: none;
+      }
+      div {
+        height: 3px;
+        width: 24px;
+        border-radius: 2px;
+        background: #60df00;
+        margin-top: 5px;
+        &:first-child {
+          margin-right: 8px;
+          width: 16px;
+        }
+        &:last-child {
+          margin-right: 14px;
+          width: 10px;
+        }
+      }
+    }
+    .clicked {
+      align-items: center !important;
+    }
+    nav {
+      color: #959595;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 50%;
+      margin-left: 10px;
+      .nav-item {
+        text-decoration: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        border-radius: 20px;
+        color: #959595;
+        span {
+          margin-left: 30px;
+          padding-right: 120px;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          text-decoration: none;
+        }
+        &:hover {
+          color: #60df00;
+          border-radius: 20px;
+        }
+      }
+      .dashboard {
+        &::before {
+          content: url('../../assets/dashboard.svg');
+          margin-top: 4px;
+        }
+        &:hover {
+          &::before {
+            content: url('../../assets/dashboard-green.svg');
+          }
+        }
+      }
+      .exchange {
+        &::before {
+          margin-top: 4px;
+          content: url('../../assets/exchange.svg');
+        }
+        &:hover {
+          &::before {
+            content: url('../../assets/exchange-green.svg');
+          }
+        }
+      }
+      .liquidity {
+        &::before {
+          margin-top: 4px;
+          content: url('../../assets/liquidity.svg');
+        }
+        &:hover {
+          &::before {
+            content: url('../../assets/liquidity-green.svg');
+          }
+        }
+      }
+      .pool {
+        &::before {
+          margin-top: 4px;
+          content: url('../../assets/pool.svg');
+        }
+        &:hover {
+          &::before {
+            content: url('../../assets/pool-green.svg');
+          }
+        }
+      }
+      .farms {
+        &::before {
+          margin-top: 4px;
+          content: url('../../assets/farm.svg');
+        }
+        &:hover {
+          &::before {
+            content: url('../../assets/farm-green.svg');
+          }
+        }
+      }
+      .win {
+        &::before {
+          margin-top: 4px;
+          content: url('../../assets/win.svg');
+        }
+        &:hover {
+          &::before {
+            content: url('../../assets/win-green.svg');
+          }
+        }
+      }
+      .lemon {
+        &::before {
+          margin-top: 4px;
+          content: url('../../assets/marketPlace.svg');
+        }
+        &:hover {
+          &::before {
+            content: url('../../assets/lemonade-network-green.svg');
+          }
+        }
+      }
+    }
+    .find-us {
+      display: flex;
+      align-items: center;
+      width: 70%;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      justify-content: space-between;
+      a {
+        transition: all ease 0.3s;
+        &:hover {
+          transform: translateY(-5px);
+        }
+      }
+    }
+  }
+  .close {
+    min-width: 160px;
+    width: 7%;
+    nav {
+      .nav-item {
+        padding-left: 0;
+      }
+    }
+  }
+}

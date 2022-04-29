@@ -1,0 +1,110 @@
+@import "../../breakpoint.scss";
+.top {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    .title {
+        @include media("<=tablet") {
+            font-size: 30px;
+            color: #60DF00;
+        }
+    }
+    .lines-link {
+        display: none;
+        @include media("<=tablet") {
+            display: flex;
+        }
+        .lines {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            padding: 12px 10px;
+            border-radius: 50px;
+        }
+    }
+    .top-right {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        select {
+            margin-right: 40px;
+            background: none;
+            border: none;
+            width: 52px;
+            height: 24px;
+            font-size: 18px;
+            cursor: pointer;
+            @include media("<=tablet") {
+                display: none;
+            }
+        }
+        .fire-pulse {
+            padding: 12px 10px;
+            transition: 0.5s ease;
+            display: none;
+            &:hover {
+                transform: translateY(10px);
+            }
+            @include media("<=tablet") {
+                display: flex;
+            }
+        }
+        .connect-button {
+            @include media("<=tablet") {
+                display: none;
+            }
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        button {
+            background: #60df00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+            position: relative;
+            padding: 15px 50px;
+            color: white;
+            background-color: #60df00;
+            border: none;
+            width: 300px;
+            height: 55px;
+            border-radius: 10px;
+            font-weight: bold;
+            overflow: hidden;
+        }
+        /*button:before (attr data-hover)*/
+        button:hover:before {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        button:before {
+            content: url(../../assets/fire-pulse.svg);
+            position: absolute;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translate(0, 100%);
+            transition: all 0.3s ease-in-out;
+        }
+        /*button div (button text before hover)*/
+        button:hover div {
+            opacity: 0;
+            transform: translate(0, -100%);
+        }
+        button div {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 800;
+            font-size: 0.8em;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+}

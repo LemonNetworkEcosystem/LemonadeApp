@@ -1,0 +1,82 @@
+@import '../../breakpoint.scss';
+.Modal {
+  display: flex;
+  background-color: white;
+  border: 2px solid #60df00;
+  outline: none;
+  position: absolute;
+  width: 470px;
+  height: 730px;
+  top: 5%;
+  bottom: 5%;
+  left: 50%;
+  margin-left: -235px;
+  padding: 20px;
+  border-radius: 25px;
+  font-family: 'Nunito', sans-serif;
+  flex-direction: column;
+  @include media('<=desktop') {
+    left: 50%;
+    width: 250px;
+    margin-left: -125px;
+  }
+  .modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    span {
+      font-size: 21px;
+      font-weight: 600;
+    }
+    button {
+      background: none;
+      border: none;
+      font-size: 21px;
+      cursor: pointer;
+      transition: 0.5s ease all;
+      &:hover {
+        transform: rotate(90deg);
+      }
+    }
+  }
+  input {
+    padding-left: 20px;
+    border-radius: 25px;
+    outline: none;
+    border: #444444 2px solid;
+    height: 50px;
+    font-size: 28px;
+  }
+  .coin-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+    -ms-overflow-style: none;
+    /* for Internet Explorer, Edge */
+    scrollbar-width: none;
+    /* for Firefox */
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .exchange-coin-select {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      img {
+        pointer-events: none;
+        width: 48x;
+      }
+      .coin-name {
+        pointer-events: none;
+        margin-left: 20px;
+        h4 {
+          margin-top: -20px;
+          color: #444444;
+        }
+      }
+    }
+  }
+}

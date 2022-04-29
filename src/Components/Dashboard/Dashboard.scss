@@ -1,0 +1,188 @@
+@import '../../breakpoint.scss';
+.dashboard-page {
+  height: 100vh;
+  width: 100%;
+  margin-right: 100px;
+  margin-left: 150px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  justify-content: center;
+  @include media('<=desktop') {
+    margin-left: 250px;
+    margin-right: 0;
+  }
+  @include media('<=tablet') {
+    margin-left: 0px;
+    align-items: center;
+  }
+  .dashboard-main {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    max-height: 90vh;
+    width: 100%;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    @include media('<=desktop') {
+      align-items: center;
+      justify-content: center;
+    }
+    .first-box {
+      margin-top: 40px;
+    }
+    .dashboard-box {
+      flex-wrap: wrap;
+      height: 600px;
+      background: white;
+      border-radius: 30px;
+      margin-bottom: 80px;
+      flex-wrap: wrap;
+      display: flex;
+      flex-direction: column;
+      width: 46%;
+      min-width: 330px;
+      @include media('<=desktop') {
+        margin-right: 50px;
+      }
+      @include media('<=tablet') {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+      .dashboard-header {
+        margin-top: 60px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: #444444;
+        font-weight: bolder;
+        span {
+          margin-top: 60px;
+        }
+      }
+      .dashboard-box-title {
+        font-size: 20px;
+        color: #959595;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        margin-top: 40px;
+        margin-left: 40px;
+        span {
+          &:last-child {
+            font-size: 30px;
+            color: #444444;
+          }
+        }
+      }
+      .dashboard-liquid-graph {
+        margin-left: 40px;
+        margin-right: 40px;
+        margin-top: 60px;
+      }
+      .dashboard-info-container {
+        max-height: 250px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        @include media('<=desktop') {
+          flex-wrap: nowrap;
+          justify-content: space-between;
+        }
+        .dashboard-info {
+          margin-top: 40px;
+          margin-left: 40px;
+          display: flex;
+          flex-direction: column;
+          @include media('<=desktop') {
+            margin-top: 20px;
+          }
+          &:first-child {
+            margin-top: 0;
+            @include media('<=desktop') {
+              margin-top: 20px;
+            }
+          }
+          &:nth-child(4) {
+            margin-top: 0;
+            @include media('<=desktop') {
+              margin-top: 20px;
+            }
+          }
+          span {
+            font-size: 20px;
+            font-weight: bold;
+            color: #444444;
+            &:first-child {
+              font-size: 16px;
+              color: #959595;
+            }
+          }
+        }
+      }
+      .dashboard-btn {
+        margin-top: 60px;
+        display: flex;
+        justify-content: center;
+        button:hover {
+          cursor: pointer;
+        }
+        button {
+          background: #60df00;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          outline: none;
+          position: relative;
+          padding: 15px 50px;
+          color: white;
+          background-color: #60df00;
+          border: none;
+          width: 150px;
+          height: 55px;
+          border-radius: 10px;
+          font-weight: bold;
+          overflow: hidden;
+        }
+        /*button:before (attr data-hover)*/
+        button:hover:before {
+          opacity: 1;
+          transform: translate(0, 0);
+        }
+        button:before {
+          content: url(../../assets/fire-pulse.svg);
+          position: absolute;
+          left: 0;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transform: translate(0, 100%);
+          transition: all 0.3s ease-in-out;
+        }
+        /*button div (button text before hover)*/
+        button:hover div {
+          opacity: 0;
+          transform: translate(0, -100%);
+        }
+        button div {
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          font-weight: 800;
+          font-size: 0.8em;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+}
