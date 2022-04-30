@@ -56,6 +56,7 @@ const LiquidityAdd = (props) => {
   const [liquidity, setLiquidity] = useState(0);
 
   const [removeApprove, setRemoveApprove] = useState(false);
+
   //FooSetter
   const [amountOutMin, setAmountOutMin] = useState(0);
 
@@ -273,7 +274,7 @@ const LiquidityAdd = (props) => {
       const for1howmuch0 = r0 / r1;
       const for0howmuch1 = r1 / r0;
 
-      setValue_1(_value0 * for1howmuch0);
+      setValue_1(_value0 * for0howmuch1);
       setRatio0per1(for0howmuch1.toFixed(4));
       setRatio1per0(for1howmuch0.toFixed(4));
 
@@ -323,7 +324,7 @@ const LiquidityAdd = (props) => {
       const for1howmuch0 = r0 / r1;
       const for0howmuch1 = r1 / r0;
 
-      setValue_0(_value1 * for0howmuch1);
+      setValue_0(_value1 * for1howmuch0);
       setRatio0per1(for0howmuch1.toFixed(4));
       setRatio1per0(for1howmuch0.toFixed(4));
 

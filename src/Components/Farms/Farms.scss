@@ -1,4 +1,4 @@
-@import '../../breakpoint.scss';
+@import "../../breakpoint.scss";
 $speed: 1s;
 $total: 31;
 @for $i from 1 through $total {
@@ -27,11 +27,11 @@ $total: 31;
   margin-right: 100px;
   flex-direction: column;
   overflow: hidden;
-  @include media('<=desktop') {
+  @include media("<=desktop") {
     margin-left: 200px;
     margin-right: 0;
   }
-  @include media('<=tablet') {
+  @include media("<=tablet") {
     margin-left: 0px;
     margin-right: 0;
   }
@@ -47,7 +47,7 @@ $total: 31;
       justify-content: space-between;
       margin-top: 40px;
       flex-wrap: wrap;
-      @include media('<=desktop') {
+      @include media("<=desktop") {
         align-items: center;
         .stake-filter {
           margin-bottom: 10px;
@@ -68,7 +68,7 @@ $total: 31;
       @media only screen and (max-width: 1050px) {
         justify-content: center;
       }
-      @include media('<=tablet') {
+      @include media("<=tablet") {
         justify-content: center;
       }
       .stake-filter {
@@ -180,7 +180,7 @@ $total: 31;
     &::-webkit-scrollbar {
       display: none;
     }
-    @include media('<=tablet') {
+    @include media("<=tablet") {
       justify-content: center;
     }
   }
@@ -239,12 +239,12 @@ $total: 31;
   padding: 30px;
   background-color: #ffffff;
   border-radius: 30px;
-  @include media('<=tablet') {
+  @include media("<=tablet") {
     width: 320px;
   }
   span {
     font-size: 20px;
-    @include media('<=desktop') {
+    @include media("<=desktop") {
       font-size: 16px;
     }
   }
@@ -256,7 +256,7 @@ $total: 31;
     }
     button {
       margin-top: 40px;
-      font-family: 'Nunito', sans-serif;
+      font-family: "Nunito", sans-serif;
       background: #60df00;
       display: flex;
       align-items: center;
@@ -272,7 +272,7 @@ $total: 31;
       border-radius: 10px;
       font-weight: bold;
       overflow: hidden;
-      @include media('<=desktop') {
+      @include media("<=desktop") {
         margin-top: 10px;
       }
     }
@@ -363,7 +363,7 @@ $total: 31;
         &:last-child {
           font-size: 30px;
           color: #444444;
-          @include media('<=desktop') {
+          @include media("<=desktop") {
             font-size: 20px;
           }
         }
@@ -414,7 +414,7 @@ $total: 31;
           &:last-child {
             color: #60df00;
             font-size: 30px;
-            @include media('<=desktop') {
+            @include media("<=desktop") {
               font-size: 20px;
             }
           }
@@ -532,7 +532,7 @@ $total: 31;
       color: #60df00;
       border: 1px solid #60df00;
     }
-    @include media('<=desktop') {
+    @include media("<=desktop") {
       margin-top: 10px;
     }
   }
@@ -550,7 +550,7 @@ $total: 31;
     background-color: #f5f5f5;
     color: #60df00;
     font-weight: 600;
-    @include media('<=desktop') {
+    @include media("<=desktop") {
       margin-top: 10px;
     }
     &:hover {
@@ -572,7 +572,7 @@ $total: 31;
     background-color: #f5f5f5;
     color: #60df00;
     font-weight: 600;
-    @include media('<=desktop') {
+    @include media("<=desktop") {
       margin-top: 10px;
     }
     &:hover {
@@ -626,7 +626,7 @@ $total: 31;
     border: none;
     outline: none;
     z-index: 8888;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
     margin-bottom: 120px;
     &:hover {
       background-color: #c1ffaa9a;

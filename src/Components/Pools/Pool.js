@@ -31,6 +31,12 @@ const Pool = (props) => {
 
   const [inputValue, setInputValue] = useState(0);
 
+  const [disableUnlock0, setDisableUnlock0] = useState(false);
+
+  const [disableApprove0, setDisableApprove0] = useState(false);
+
+  const [disableDeposit0, setDisableDeposit0] = useState(false);
+
   const handleToast = () => {
     toast.success("Deposit Success", {
       position: "top-right",
@@ -169,6 +175,7 @@ const Pool = (props) => {
   };
 
   const triggerUnlockPool = async () => {
+    setDisableUnlock0(true);
     window.ethereum.on("accountsChanged", function (accounts) {
       window.location.reload();
     });
@@ -194,20 +201,24 @@ const Pool = (props) => {
                 value: web3.utils.toWei("1"),
               });
 
+              setDisableUnlock0(false);
               props.setIsFlipped(true);
               setIsFlippedIndivitual(true);
             } catch (e) {
+              setDisableUnlock0(false);
               setIsFlippedIndivitual(false);
             }
           }
         });
       } catch (e) {
+        setDisableUnlock0(false);
         console.log(e);
       }
     }
   };
 
   const approve = async (_address) => {
+    setDisableApprove0(true);
     window.ethereum.on("accountsChanged", function (accounts) {
       window.location.reload();
     });
@@ -236,6 +247,8 @@ const Pool = (props) => {
               gas: gas,
             });
 
+          setDisableApprove0(false);
+
           if (_address === testingData.tokens.LMD.address) {
             setAllowed0(true);
           }
@@ -246,12 +259,15 @@ const Pool = (props) => {
           // }
         });
       } catch (e) {
+        setDisableApprove0(false);
+
         console.log(e);
       }
     }
   };
 
   const deposit0 = async (_value) => {
+    setDisableDeposit0(true);
     window.ethereum.on("accountsChanged", function (accounts) {
       window.location.reload();
     });
@@ -274,13 +290,14 @@ const Pool = (props) => {
               .deposit(3, web3.utils.toWei(_value.toString()))
               .send({
                 from: accounts[0],
-                gas: gas,
               });
 
             props.depositSuccess();
             await getBlockData();
+            setDisableDeposit0(false);
             setInputValue("");
           } catch (e) {
+            setDisableDeposit0(false);
             props.depositError();
 
             console.log(e);
@@ -291,6 +308,7 @@ const Pool = (props) => {
           // }
         });
       } catch (e) {
+        setDisableDeposit0(false);
         props.depositError();
         console.log(e);
       }
@@ -321,7 +339,6 @@ const Pool = (props) => {
               .withdraw(3, web3.utils.toWei(inputValue.toString()))
               .send({
                 from: accounts[0],
-                gas: gas,
               });
           }
           await getBlockData();
@@ -473,7 +490,10 @@ const Pool = (props) => {
           <img src={Lemonade3D2} alt="" className="logo" />
           <img src={Lemonade3D1} alt="" className="logo" />
         </div>{" "}
-        <button onClick={() => triggerUnlockPool()} className="back-unlock">
+        <button
+          onClick={disableUnlock0 ? () => {} : () => triggerUnlockPool()}
+          className="back-unlock"
+        >
           Unlock
         </button>
       </div>
@@ -500,8 +520,8 @@ const Pool = (props) => {
 
         <div className="pool-box-bot">
           <div className="info">
-            <span>APY</span>
-            <span>78%</span>
+            <span>Daily. LMD</span>
+            <span>17,280,000.00</span>
           </div>
           <div className="info">
             <span>Your Stake</span>
@@ -547,9 +567,13 @@ const Pool = (props) => {
         ) : (
           <button
             className="approve-btn"
-            onClick={async () => {
-              await approve(props.token0);
-            }}
+            onClick={
+              disableApprove0
+                ? () => {}
+                : () => {
+                    approve(props.token0);
+                  }
+            }
           >
             Approve <img src={props.coinImage} alt="" />
           </button>
@@ -557,12 +581,16 @@ const Pool = (props) => {
         <button
           style={{ display: allowed0 ? "flex" : "none" }}
           className="deposit-btn"
-          onClick={async (e) => {
-            if (inputValue === "") {
-            } else {
-              await deposit0(inputValue);
-            }
-          }}
+          onClick={
+            disableDeposit0
+              ? () => {}
+              : async (e) => {
+                  if (inputValue === "") {
+                  } else {
+                    await deposit0(inputValue);
+                  }
+                }
+          }
         >
           Deposit
         </button>

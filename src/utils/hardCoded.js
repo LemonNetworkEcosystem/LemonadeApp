@@ -51,9 +51,26 @@ const testingData = {
     USDT: {
       address: "0x387f7D8D3360588a9A0B417F6C5DaAe64450942e",
       img: "https://s2.coinmarketcap.com/static/img/coins/200x200/1.png",
-      name: "Token B",
-      symbol: "TKB",
+      name: "USDT",
+      symbol: "USDT",
     },
+    DAI: {
+      chainId: 246,
+      address: "0x3862F260e94904aaAe628DdF427b1F662652BBD2",
+      name: "DAI",
+      decimals: 18,
+      symbol: "DAI",
+      img: "https://raw.githubusercontent.com/carbonswap/assets/master/carbonswap/logo/0x3862F260e94904aaAe628DdF427b1F662652BBD2.png",
+    },
+    G$: {
+      chainId: 246,
+      address: "0x41c49ef86f513498D9Be19F4E920a6Afbe8Af4Cb",
+      name: "G$",
+      decimals: 18,
+      symbol: "Gangster Dollar",
+      img: "https://gswap.app/static/media/gs.59fc8360.png",
+    },
+
     SMUDGE: {
       address: "0x772543750Ea54c393c2E3BE4Ae48F2616631F38F",
       img: "https://raw.githubusercontent.com/carbonswap/assets/master/carbonswap/logo/0x772543750Ea54c393c2E3BE4Ae48F2616631F38F.png",
@@ -61,14 +78,14 @@ const testingData = {
       symbol: "Smudge",
     },
 
-    WBNB: {
-      chainId: 246,
-      address: "0x6eEf0941dDc0dEdcDb92C34752B558030B580d33",
-      name: "Wrapped BNB",
-      decimals: 18,
-      symbol: "WBNB",
-      img: "https://raw.githubusercontent.com/carbonswap/assets/master/carbonswap/logo/0x6eEf0941dDc0dEdcDb92C34752B558030B580d33.png",
-    },
+    // WBNB: {
+    //   chainId: 246,
+    //   address: "0x6eEf0941dDc0dEdcDb92C34752B558030B580d33",
+    //   name: "Wrapped BNB",
+    //   decimals: 18,
+    //   symbol: "WBNB",
+    //   img: "https://raw.githubusercontent.com/carbonswap/assets/master/carbonswap/logo/0x6eEf0941dDc0dEdcDb92C34752B558030B580d33.png",
+    // },
     UNI: {
       chainId: 246,
       address: "0x74Ff9a96eA3E529332d9a1a7d0aba7A27030F867",
@@ -227,15 +244,6 @@ const testingData = {
       decimals: 6,
       symbol: "USDC",
       img: "https://raw.githubusercontent.com/carbonswap/assets/master/carbonswap/logo/0x9DaD43ee9E09837aeAca21799c88613e8E7c67dd.png",
-    },
-
-    DAI: {
-      chainId: 246,
-      address: "0x3862F260e94904aaAe628DdF427b1F662652BBD2",
-      name: "DAI",
-      decimals: 18,
-      symbol: "DAI",
-      img: "https://raw.githubusercontent.com/carbonswap/assets/master/carbonswap/logo/0x3862F260e94904aaAe628DdF427b1F662652BBD2.png",
     },
 
     // USDT:{

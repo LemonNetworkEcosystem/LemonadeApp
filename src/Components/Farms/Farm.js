@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
-import True from '../../assets/true.svg'
-import { Link } from 'react-router-dom'
-import ReactCardFlip from 'react-card-flip'
-import Lemonade3D1 from '../../assets/lemonade3D1.png'
-import Lemonade3D2 from '../../assets/lemonade3D2.png'
+import React, { useState } from "react";
+import True from "../../assets/true.svg";
+import { Link } from "react-router-dom";
+import ReactCardFlip from "react-card-flip";
+import Lemonade3D1 from "../../assets/lemonade3D1.png";
+import Lemonade3D2 from "../../assets/lemonade3D2.png";
 const Farm = (props) => {
-  const [IsFlippedIndivitual, setIsFlippedIndivitual] = useState(false)
+  const [IsFlippedIndivitual, setIsFlippedIndivitual] = useState(false);
+  //Buttons
+  const [disableBtnDeposit, setdisableBtnDeposit] = useState(false);
+  const [disableBtnWithdraw, setdisableBtnWithdraw] = useState(false);
+  const [disableBtnWithdrawAll, setdisableBtnWithdrawAll] = useState(false);
+
   return (
     <ReactCardFlip isFlipped={props.isFlipped} flipDirection="horizontal">
       <div className="back">
-        {' '}
+        {" "}
         <div className="wrap">
           <img src={Lemonade3D1} alt="" className="logo" />
           <img src={Lemonade3D2} alt="" className="logo" />
@@ -30,10 +35,19 @@ const Farm = (props) => {
           <img src={Lemonade3D1} alt="" className="logo" />
           <img src={Lemonade3D2} alt="" className="logo" />
           <img src={Lemonade3D1} alt="" className="logo" />
-        </div>{' '}
-        <button onClick={() => props.unlock()} className="back-unlock">
-          Unlock
-        </button>
+        </div>{" "}
+        {!props.disableUnlock ? (
+          <button
+            onClick={() => {
+              props.unlock();
+            }}
+            className="back-unlock"
+          >
+            Unlock
+          </button>
+        ) : (
+          <button className="back-unlock">Unlock</button>
+        )}
       </div>
       <div className="farm-box">
         <div className="farm-box-top">
@@ -43,7 +57,7 @@ const Farm = (props) => {
               <img src={props.secondCoinImg} alt="" />
             </div>
             <div className="coin-name">
-              <span> {props.firstCoinName} </span>{' '}
+              <span> {props.firstCoinName} </span>{" "}
               <span> {props.secondCoinName} </span>
             </div>
           </div>
@@ -55,21 +69,27 @@ const Farm = (props) => {
           </div>
           <div className="info">
             <span>
-              {' '}
-              {props.firstCoinName} - {props.secondCoinName} staked{' '}
-            </span>{' '}
+              {" "}
+              {props.firstCoinName} - {props.secondCoinName} staked{" "}
+            </span>{" "}
             <span> {props.stakedAmount} </span>
           </div>
         </div>
         <div className="farm-box-bot">
           <div className="farm-box-bot-top">
-            {props.stakedAmount !== '0' ? (
+            {props.stakedAmount !== 0 || props.stakedAmount !== "0" ? (
               <div className="info-earned">
                 <span> Pdt. Rewards </span> <span>{props.rewards}</span>
               </div>
             ) : (
               <div className="info-earned">
-                <span> Est. APY </span> <span> 90.47 % </span>
+                <span> Daily. LMD </span>{" "}
+                <span>
+                  {" "}
+                  {props.farmN === 0
+                    ? "69,120,000.00 LMD"
+                    : "34,560,000.00"}{" "}
+                </span>
               </div>
             )}
             {/* <button> Harvest </button> */}
@@ -84,57 +104,67 @@ const Farm = (props) => {
                 value={props.inputValue}
                 placeholder="00.00"
                 onChange={(e) => {
-                  props.setValue(e.target.value)
+                  props.setValue(e.target.value);
                 }}
               />
               <button onClick={() => props.getMax()}>Max</button>
             </div>
             <span
               style={{
-                fontSize: '16px',
-                fontWeight: '600',
-                color: '#959595',
-                alignSelf: 'flex-end',
+                fontSize: "16px",
+                fontWeight: "600",
+                color: "#959595",
+                alignSelf: "flex-end",
               }}
             >
-              Balance:{' '}
+              Balance:{" "}
               <font color="#444444">
                 {parseFloat(props.balance).toFixed(8)}
               </font>
             </span>
+
             <button
-              style={{ display: props.approved ? 'flex' : 'none' }}
-              className="deposit-btn"
-              onClick={() => {
-                props.deposit()
+              style={{
+                display: props.approved ? "flex" : "none",
               }}
+              className="deposit-btn"
+              onClick={
+                props.disableDepositBtn ? () => {} : () => props.deposit()
+              }
             >
               Deposit
             </button>
+
             <br></br>
 
             <div
               style={{
-                display: 'flex',
-                position: 'relative',
-                alignItems: 'center',
-                justifyContent: 'space-between',
+                display: "flex",
+                position: "relative",
+                alignItems: "center",
+                justifyContent: "space-between",
               }}
             >
               <button
-                style={{ display: props.approved ? 'flex' : 'none' }}
+                style={{
+                  display: props.approved ? "flex" : "none",
+                  pointerEvents: disableBtnWithdraw ? "none" : "unset",
+                }}
                 className="withdraw-btn"
                 onClick={() => {
-                  props.withdraw()
+                  props.withdraw();
                 }}
               >
                 Withdraw
               </button>
               <button
-                style={{ display: props.approved ? 'flex' : 'none' }}
+                style={{
+                  display: props.approved ? "flex" : "none",
+                  pointerEvents: disableBtnWithdrawAll ? "none" : "unset",
+                }}
                 className="withdraw-all"
                 onClick={() => {
-                  props.withdrawAll()
+                  props.withdrawAll();
                 }}
               >
                 Withdraw ALL
@@ -142,8 +172,11 @@ const Farm = (props) => {
             </div>
           </div>
         ) : (
-          <button className="approve-btn" onClick={() => props.approve()}>
-            Approve{' '}
+          <button
+            className="approve-btn"
+            onClick={props.disableApproveBtn ? () => {} : () => props.approve()}
+          >
+            Approve{" "}
             <div className="coin-icon">
               <img src={props.firstCoinImg} alt="" />
               <img src={props.secondCoinImg} alt="" />
@@ -151,7 +184,7 @@ const Farm = (props) => {
           </button>
         )}
 
-        <Link to={'/wallet-select'} style={{ textDecoration: 'none' }}>
+        <Link to={"/wallet-select"} style={{ textDecoration: "none" }}>
           <div className="farm-btn">
             <button>
               <div> Connect to Wallet </div>
@@ -160,7 +193,7 @@ const Farm = (props) => {
         </Link>
       </div>
     </ReactCardFlip>
-  )
-}
+  );
+};
 
-export default Farm
+export default Farm;

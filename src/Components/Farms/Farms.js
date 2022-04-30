@@ -58,6 +58,18 @@ const Farms = () => {
   const [reward1, setReward1] = useState(0);
   const [reward2, setReward2] = useState(0);
 
+  const [disableUnlock0, setDisableUnlock0] = useState(false);
+  const [disableUnlock1, setDisableUnlock1] = useState(false);
+  const [disableUnlock2, setDisableUnlock2] = useState(false);
+
+  const [disableApproveBtn0, setdisableApproveBtn0] = useState(false);
+  const [disableApproveBtn1, setdisableApproveBtn1] = useState(false);
+  const [disableApproveBtn2, setdisableApproveBtn2] = useState(false);
+
+  const [disableBtnDeposit0, setdisableBtnDeposit0] = useState(false);
+  const [disableBtnDeposit1, setdisableBtnDeposit1] = useState(false);
+  const [disableBtnDeposit2, setdisableBtnDeposit2] = useState(false);
+
   const getMax0 = () => {
     setInput0(balance0);
   };
@@ -99,6 +111,7 @@ const Farms = () => {
       progress: undefined,
     });
   };
+
   const handleWithdrawToast = () => {
     toast.success("Withdraw Success", {
       position: "top-right",
@@ -382,6 +395,7 @@ const Farms = () => {
       const web3 = new Web3(window.ethereum);
       try {
         window.ethereum.enable().then(async function () {
+          setDisableUnlock0(true);
           // User has allowed account access to DApp...
           const netId = await web3.eth.net.getId();
 
@@ -400,13 +414,16 @@ const Farms = () => {
             });
             handleUnlockToast();
             setFarm0Flipped(true);
+            setDisableUnlock0(false);
           } catch (e) {
             handleUnlockErrorToast();
+            setDisableUnlock0(false);
             setFarm0Flipped(false);
           }
         });
       } catch (e) {
         handleUnlockErrorToast();
+        setDisableUnlock0(false);
         console.log(e);
       }
     }
@@ -418,6 +435,8 @@ const Farms = () => {
     });
     if (typeof window.ethereum !== "undefined") {
       const web3 = new Web3(window.ethereum);
+      setDisableUnlock1(true);
+
       try {
         window.ethereum.enable().then(async function () {
           // User has allowed account access to DApp...
@@ -434,18 +453,21 @@ const Farms = () => {
           try {
             const unlocked = await unlock_contract.methods.unlock().send({
               from: accounts[0],
-              gas: gas,
               value: web3.utils.toWei("1"),
             });
             handleUnlockToast();
             setFarm1Flipped(true);
+            setDisableUnlock1(false);
           } catch (e) {
             handleUnlockErrorToast();
             setFarm1Flipped(false);
+            setDisableUnlock1(false);
           }
         });
       } catch (e) {
         handleUnlockErrorToast();
+        setDisableUnlock1(false);
+
         console.log(e);
       }
     }
@@ -457,6 +479,8 @@ const Farms = () => {
     });
     if (typeof window.ethereum !== "undefined") {
       const web3 = new Web3(window.ethereum);
+      setDisableUnlock2(true);
+
       try {
         window.ethereum.enable().then(async function () {
           // User has allowed account access to DApp...
@@ -473,18 +497,20 @@ const Farms = () => {
           try {
             const unlocked = await unlock_contract.methods.unlock().send({
               from: accounts[0],
-              gas: gas,
               value: web3.utils.toWei("1"),
             });
             handleUnlockToast();
             setFarm2Flipped(true);
+            setDisableUnlock2(false);
           } catch (e) {
             handleUnlockErrorToast();
             setFarm2Flipped(false);
+            setDisableUnlock2(false);
           }
         });
       } catch (e) {
         handleUnlockErrorToast();
+        setDisableUnlock2(false);
         console.log(e);
       }
     }
@@ -493,6 +519,7 @@ const Farms = () => {
   const approve0 = async (_address) => {
     const web3 = new Web3(window.ethereum);
     // User has allowed account access to DApp...
+    setdisableApproveBtn0(true);
     const netId = await web3.eth.net.getId();
 
     const accounts = await web3.eth.getAccounts();
@@ -518,12 +545,13 @@ const Farms = () => {
         )
         .send({
           from: accounts[0],
-          gas: gas,
         });
       handleApproveToast();
       setApproved0(true);
+      setdisableApproveBtn0(false);
     } catch (e) {
       handleApproveErrorToast();
+      setdisableApproveBtn0(false);
       console.log(e);
     }
 
@@ -542,6 +570,8 @@ const Farms = () => {
       try {
         window.ethereum.enable().then(async function () {
           // User has allowed account access to DApp...
+          setdisableApproveBtn1(true);
+
           const netId = await web3.eth.net.getId();
 
           const accounts = await web3.eth.getAccounts();
@@ -571,10 +601,11 @@ const Farms = () => {
             )
             .send({
               from: accounts[0],
-              gas: gas,
             });
 
           setApproved1(true);
+          setdisableApproveBtn1(false);
+
           handleApproveToast();
 
           //* ADD new pool TOKEN
@@ -583,6 +614,7 @@ const Farms = () => {
           // }
         });
       } catch (e) {
+        setdisableApproveBtn1(false);
         handleApproveErrorToast();
         console.log(e);
       }
@@ -597,6 +629,8 @@ const Farms = () => {
       const web3 = new Web3(window.ethereum);
       try {
         window.ethereum.enable().then(async function () {
+          setdisableApproveBtn2(true);
+
           // User has allowed account access to DApp...
           const netId = await web3.eth.net.getId();
 
@@ -627,10 +661,10 @@ const Farms = () => {
             )
             .send({
               from: accounts[0],
-              gas: gas,
             });
           handleApproveToast();
           setApproved2(true);
+          setdisableApproveBtn2(false);
 
           //* ADD new pool TOKEN
           // else if (_address === testingData.address.OTHER_TOKEN.address) {
@@ -638,6 +672,7 @@ const Farms = () => {
           // }
         });
       } catch (e) {
+        setdisableApproveBtn2(false);
         handleApproveErrorToast();
         console.log(e);
       }
@@ -645,11 +680,13 @@ const Farms = () => {
   };
 
   const deposit0 = async () => {
+    setdisableBtnDeposit0(true);
     window.ethereum.on("accountsChanged", function (accounts) {
       window.location.reload();
     });
     if (typeof window.ethereum !== "undefined") {
       const web3 = new Web3(window.ethereum);
+
       try {
         window.ethereum.enable().then(async function () {
           // User has allowed account access to DApp...
@@ -685,18 +722,21 @@ const Farms = () => {
               .deposit(0, web3.utils.toWei(input0.toString()))
               .send({
                 from: accounts[0],
-                gas: gas,
               });
             handleToast();
             await getBlockData();
+            setdisableBtnDeposit0(false);
+
             setInput0("");
           } catch (e) {
             handleErrorToast();
+            setdisableBtnDeposit0(false);
 
             console.log(e);
           }
         });
       } catch (e) {
+        setdisableBtnDeposit0(false);
         handleErrorToast();
 
         console.log(e);
@@ -705,11 +745,13 @@ const Farms = () => {
   };
 
   const deposit1 = async () => {
+    setdisableBtnDeposit1(true);
     window.ethereum.on("accountsChanged", function (accounts) {
       window.location.reload();
     });
     if (typeof window.ethereum !== "undefined") {
       const web3 = new Web3(window.ethereum);
+
       try {
         window.ethereum.enable().then(async function () {
           // User has allowed account access to DApp...
@@ -733,14 +775,18 @@ const Farms = () => {
             handleToast();
 
             await getBlockData();
+            setdisableBtnDeposit1(false);
+
             setInput1("");
           } catch (e) {
             handleErrorToast();
+            setdisableBtnDeposit1(false);
 
             console.log(e);
           }
         });
       } catch (e) {
+        setdisableBtnDeposit1(false);
         handleErrorToast();
         console.log(e);
       }
@@ -748,11 +794,13 @@ const Farms = () => {
   };
 
   const deposit2 = async () => {
+    setdisableBtnDeposit2(true);
     window.ethereum.on("accountsChanged", function (accounts) {
       window.location.reload();
     });
     if (typeof window.ethereum !== "undefined") {
       const web3 = new Web3(window.ethereum);
+
       try {
         window.ethereum.enable().then(async function () {
           // User has allowed account access to DApp...
@@ -776,12 +824,16 @@ const Farms = () => {
             handleToast();
             await getBlockData();
             setInput2("");
+            setdisableBtnDeposit2(false);
           } catch (e) {
             handleErrorToast();
+            setdisableBtnDeposit2(false);
+
             console.log(e);
           }
         });
       } catch (e) {
+        setdisableBtnDeposit2(false);
         handleErrorToast();
         console.log(e);
       }
@@ -1240,6 +1292,10 @@ const Farms = () => {
             withdraw={withdraw0}
             withdrawAll={withdraw0All}
             balance={balance0}
+            disableUnlock={disableUnlock0}
+            disableApproveBtn={disableApproveBtn0}
+            disableDepositBtn={disableBtnDeposit0}
+            farmN={0}
           />{" "}
           <Farm
             firstCoinImg={LMD}
@@ -1260,6 +1316,10 @@ const Farms = () => {
             withdraw={withdraw1}
             withdrawAll={withdraw1All}
             balance={balance1}
+            disableUnlock={disableUnlock1}
+            disableApproveBtn={disableApproveBtn1}
+            disableDepositBtn={disableBtnDeposit1}
+            farmN={1}
           />{" "}
           <Farm
             firstCoinImg={LMN}
@@ -1280,6 +1340,10 @@ const Farms = () => {
             withdraw={withdraw2}
             withdrawAll={withdraw2All}
             balance={balance2}
+            disableUnlock={disableUnlock2}
+            disableApproveBtn={disableApproveBtn2}
+            disableDepositBtn={disableBtnDeposit2}
+            farmN={2}
           />{" "}
           {/* <Farm
                                 firstCoinImg={LMN}
