@@ -56,7 +56,7 @@ const Navbar = () => {
     );
 
     const pair_address = await factory.methods
-      .getPair(testingData.tokens.LMD.address, testingData.tokens.USDT.address)
+      .getPair(testingData.tokens.LMD.address, testingData.tokens.DAI.address)
       .call({ from: accounts[0] });
 
     const pair_contract = new web3.eth.Contract(Pair.abi, pair_address);
