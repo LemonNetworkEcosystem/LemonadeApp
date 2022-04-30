@@ -35,7 +35,7 @@
     "web3": "1.2.6"
   },
 
-"homepage":"http://Lemondroid.github.io/LemonadeApp",
+"homepage":"https://lemonade.exchange",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
